@@ -25,7 +25,13 @@ def handle_command(command, channel):
     ### Main behavior block ###
     if 'morgan so clueless' in command:
         response = "Because he's dumb. :eggplant:"
-
+    elif command.startswith('set_status'):
+        status = command.split('set_status')[1].strip()
+        with open('./current_status.txt', 'w') as f:
+            f.write(status)
+    elif command.startswith('get_status'):
+        with open('./current_status.txt', 'r') as f:
+            response = f.readlines()[0]
     else:
         # Default response
         response = default_response
