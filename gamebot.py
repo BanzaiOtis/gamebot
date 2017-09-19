@@ -18,13 +18,22 @@ def handle_command(command, channel):
         are valid commands. If so, then acts on the commands. If not,
         returns back what it needs for clarification.
     """
-    response = "What the hell are you talking about? :hear_no_evil:"
-    if 'morgan clueless' in command:
+    # default response if command is not recognized by logic
+    # in main behavior block
+    default_response = "What the hell are you talking about? :hear_no_evil:"
+
+    ### Main behavior block ###
+    if 'morgan so clueless' in command:
         response = "Because he's dumb. :eggplant:"
+
+    else:
+        # Default response
+        response = default_response
+
+    ### End main behavior block ###
 
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
-
 
 def parse_slack_output(slack_rtm_output):
     """
