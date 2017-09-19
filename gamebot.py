@@ -61,6 +61,9 @@ def parse_slack_output(slack_rtm_output):
 if __name__ == "__main__":
     READ_WEBSOCKET_DELAY = 1 # 1 second delay between reading from firehose
     max_inactive_time = 29 * 60 # 29 minutes in seconds
+    slack_client.api_call("chat.postMessage", channel='C7412E935',
+                          text="Redeployed: I'm awake!", as_user=True)
+    
     # last_call_time = time.time()
     if slack_client.rtm_connect():
         print("StarterBot connected and running!")
