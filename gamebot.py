@@ -29,6 +29,7 @@ def handle_command(command, channel):
         status = command.split('set_status')[1].strip()
         with open('./current_status.txt', 'w') as f:
             f.write(status)
+            response = "Done!"
     elif command.startswith('get_status'):
         with open('./current_status.txt', 'r') as f:
             response = f.readlines()[0]
