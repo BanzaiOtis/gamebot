@@ -61,7 +61,7 @@ def parse_slack_output(slack_rtm_output):
 if __name__ == "__main__":
     READ_WEBSOCKET_DELAY = 1 # 1 second delay between reading from firehose
     max_inactive_time = 29 * 60 # 29 minutes in seconds
-    last_call_time = time.time()
+    # last_call_time = time.time()
 
     if slack_client.rtm_connect():
         # Bot notifies #bot_testing channel when it is redeployed.
@@ -72,15 +72,15 @@ if __name__ == "__main__":
             command, channel = parse_slack_output(slack_client.rtm_read())
             if command and channel:
                 handle_command(command, channel)
-                last_call_time = time.time()
+                # last_call_time = time.time()
 
             # Setting up a timer to ping Slack with a frivolous call if
             # command hasn't been a meaningful call within the given
             # inactive time. This should keep the Heroku dyno awake.
-            current_time = time.time()
-            if (current_time - last_call_time) > max_inactive_time:
-                junk_call = slack_client.api_call("users.list")
-                last_call_time = current_time
+            # current_time = time.time()
+            # if (current_time - last_call_time) > max_inactive_time:
+            #     junk_call = slack_client.api_call("users.list")
+            #     last_call_time = current_time
 
             time.sleep(READ_WEBSOCKET_DELAY)
     else:
