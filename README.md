@@ -18,4 +18,9 @@ NOTE: You can ignore all other setup instructions at the above Heroku CLI link (
 ## Programming gamebot
 All of the action takes place in the `handle_command()` inside `gamebot.py`. This function is passed a `command` parameter, which is everything after somebody references gamebot in Slack. So `@gamebot why is Jason so awesome?` will be parsed and `why is Jason so awesome?` will be a string in the `command` variable.
 
-From here, it's a series of ifelse statements. If you want to add a new gamebot response, add an `elif` statement in the function, using whatever logic you want to identify the right trigger for that response, and then store your response inside the if statement in the `response` variable. 
+From here, it's a series of ifelse statements. If you want to add a new gamebot response, add an `elif` statement in the function, using whatever logic you want to identify the right trigger for that response, and then store your response inside the if statement in the `response` variable.
+
+## Running locally
+To run the bot from your local machine, you need to set two environmental variables, `BOT_ID` and `SLACK_BOT_TOKEN`, then run `python gamebot.py`. You can retrieve the environmental variable values from Heroku using `heroku config`.
+
+NOTE: you can stop the gamebot app in Heroku using `heroku ps:stop "gamebotapp"` before you run local testing and the restart it with `heroku ps:restart "gamebotapp"` after to start. It will automatically start after a push to the heroku repo though. To get a list of current dynos and their status, use `heroku ps`.
