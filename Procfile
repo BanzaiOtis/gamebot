@@ -1,1 +1,1 @@
-web: python gamebot.py
+worker: python gamebot.py
