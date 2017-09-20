@@ -2,7 +2,7 @@
 
 A simple Slack bot based on the starter code from Matt Makai at https://www.fullstackpython.com/blog/build-first-slack-bot-python.html. The bot is deployed on a free-tier Heroku dyno.
 
-## What you need to edit/deployed
+## What you need to edit/deploy
 1. A [free heroku account](https://signup.heroku.com/dc?_ga=2.57799971.807021217.1505711200-711150842.1505531059)
 2. Install the [Heroku CLI](https://devcenter.heroku.com/articles/getting-started-with-python#set-up)
 
