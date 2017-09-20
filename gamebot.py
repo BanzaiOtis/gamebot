@@ -36,6 +36,8 @@ def handle_command(command, channel):
     else:
         # Default response
         response = default_response
+    
+    #adding a comment here to test how this works
 
     ### End main behavior block ###
 
