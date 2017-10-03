@@ -39,7 +39,10 @@ def handle_command(command, channel):
             item = command.split(' ')[-1]
         except IndexError:
             break
-        response = links[item]
+        if item:
+            response = links[item]
+        else:
+            response = "What should I show?"
     else:
         # Default response
         response = default_response
