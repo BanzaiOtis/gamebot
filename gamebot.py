@@ -38,7 +38,7 @@ def handle_command(command, channel):
         try:
             item = command.split(' ')[-1]
         except IndexError:
-            break
+            response = default_response
         if item:
             response = links[item]
         else:
