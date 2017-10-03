@@ -2,6 +2,7 @@ import os
 import time
 from slackclient import SlackClient
 
+from links import links # contains links to pictures
 
 # gamebot's ID as an environment variable
 BOT_ID = os.environ.get("BOT_ID")
@@ -33,6 +34,12 @@ def handle_command(command, channel):
     elif command.startswith('get_status'):
         with open('./current_status.txt', 'r') as f:
             response = f.readlines()[0]
+    elif command.startswith('show'):
+        try:
+            item = command.split(' ')[-1]
+        except IndexError:
+            break
+        response = links[item]
     else:
         # Default response
         response = default_response
