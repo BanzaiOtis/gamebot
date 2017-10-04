@@ -57,6 +57,16 @@ def handle_command(command, channel):
         except:
             response = default_response
 
+    elif command.startswith('roll20'):
+        try:
+            item = command.split(' ')
+            if len(item) == 1:
+                response = "Please include something to search for"
+            else:
+                response = 'https://roll20.net/compendium/dnd5e/'+str(item[-1])
+        except:
+            response = default_response
+
     else:
         # Default response
         response = default_response
