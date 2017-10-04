@@ -36,13 +36,16 @@ def handle_command(command, channel):
             response = f.readlines()[0]
     elif command.startswith('show'):
         try:
-            item = command.split(' ')[-1]
+            item = command.split(' ')
+            if len(item) == 1:
+                response = "Please include something to show"
+                item = False
+            else:
+                item = item[-1]
         except IndexError:
             response = default_response
         if item:
             response = links[item]
-        else:
-            response = "What should I show?"
     else:
         # Default response
         response = default_response
