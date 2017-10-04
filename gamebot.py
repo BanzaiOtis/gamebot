@@ -26,31 +26,30 @@ def handle_command(command, channel):
     ### Main behavior block ###
     if 'morgan so clueless' in command:
         response = "Because he's dumb. :eggplant:"
+
     elif command.startswith('set_status'):
         status = command.split('set_status')[1].strip()
         with open('./current_status.txt', 'w') as f:
             f.write(status)
         response = "Done!"
+
     elif command.startswith('get_status'):
         with open('./current_status.txt', 'r') as f:
             response = f.readlines()[0]
+
     elif command.startswith('show'):
         try:
             item = command.split(' ')
             if len(item) == 1:
                 response = "Please include something to show"
-                item = False
             else:
-                item = item[-1]
-        except IndexError:
+                response = links[item[-1]]
+        except:
             response = default_response
-        if item:
-            response = links[item]
+
     else:
         # Default response
         response = default_response
-    
-    #adding a comment here to test how this works
 
     ### End main behavior block ###
 
