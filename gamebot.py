@@ -47,6 +47,16 @@ def handle_command(command, channel):
         except:
             response = default_response
 
+    elif command.startswith('search'):
+        try:
+            item = command.split(' ')
+            if len(item) == 1:
+                response = "Please include something to search for"
+            else:
+                response = 'http://forgottenrealms.wikia.com/wiki/'+str(item[-1])
+        except:
+            response = default_response
+
     else:
         # Default response
         response = default_response
