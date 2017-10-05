@@ -1,6 +1,7 @@
 import os
 import time
 from slackclient import SlackClient
+import requests
 
 from links import links # contains links to pictures
 
@@ -46,8 +47,18 @@ def handle_command(command, channel):
                 response = links[item[-1]]
         except:
             response = default_response
-
+            
     elif command.startswith('search'):
+        try:
+            item = command.split(' ')
+            if len(item) == 1:
+                response = "Please include something to search for"
+            else:
+                search_results(str(item[-1]))
+        except:
+            response = default_response
+
+    elif command.startswith('frwiki'):
         try:
             item = command.split(' ')
             if len(item) == 1:
@@ -75,6 +86,18 @@ def handle_command(command, channel):
 
     slack_client.api_call("chat.postMessage", channel=channel,
                           text=response, as_user=True)
+
+def search_results(term):
+    url = 'http://forgottenrealms.wikia.com/wiki/'+term
+    request = requests.get(url)
+    if request.status_code == 200:
+        slack_client.api_call("chat.postMessage", channel=channel,
+                          text=url, as_user=True)
+    url = 'https://roll20.net/compendium/dnd5e/'+term
+    request = requests.get(url)
+    if request.status_code == 200:
+        slack_client.api_call("chat.postMessage", channel=channel,
+                          text=url, as_user=True)
 
 def parse_slack_output(slack_rtm_output):
     """
