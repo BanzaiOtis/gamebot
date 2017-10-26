@@ -79,7 +79,7 @@ def handle_command(command, channel):
             response = default_response
 
     elif command.startswith('moonphase'):
-        from moon_phase import moonphase
+        from moon_phases import moonphase
         try:
             item = command.split(' ')
             if len(item) == 1:
