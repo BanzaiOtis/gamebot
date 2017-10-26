@@ -78,6 +78,23 @@ def handle_command(command, channel):
         except:
             response = default_response
 
+    elif command.startswith('moonphase'):
+        from moon_phase import moonphase
+        try:
+            item = command.split(' ')
+            if len(item) == 1:
+                response = "Please include a date in month-day-year format"
+            else:
+                date = item[-1]
+                month, day, year = date.split('-')
+                phase = moonphase(day, month, year)
+                url = 'http://archive.wizards.com/dnd/fc/moons/moon_'
+                url += str(phase)
+                url += '.jpg'
+                response = url
+        except:
+            response = default_response
+
     else:
         # Default response
         response = default_response
