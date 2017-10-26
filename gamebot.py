@@ -85,9 +85,9 @@ def handle_command(command, channel):
             if len(item) == 1:
                 response = "Please include a date in month-day-year format"
             else:
-                date = item[-1]
+                date = str(item[-1])
                 month, day, year = date.split('-')
-                phase = moonphase(day, month, year)
+                phase = moonphase(int(day), int(month), int(year))
                 url = 'http://archive.wizards.com/dnd/fc/moons/moon_'
                 url += str(phase)
                 url += '.jpg'
